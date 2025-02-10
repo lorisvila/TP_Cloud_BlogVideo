@@ -1,0 +1,29 @@
+services:
+  phpMyAdmin:
+    image: phpmyadmin:5-apache
+    restart: always
+    ports:
+      - 8085:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  db:
+    image: mariadb:10
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: BestPasswordEver:)
+      MYSQL_USER: phpServerUser
+      MYSQL_PASSWORD: BestPasswordEver:)
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  php-server:
+    build:
+      context: .
+      dockerfile: phpserver.Dockerfile
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - 8080:8080
+    command: php -S 0.0.0.0:8080 -t /var/www/html
