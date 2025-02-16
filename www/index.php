@@ -84,7 +84,8 @@
         $childView = $routes['/']['file'];
         echo "<h1 style='text-align: center; color: purple'>405 - Mauvaise méthode</h1><br>";
         include('layout.php');
-    } elseif ((!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] === false) && isset($routes[$request_uri]['auth'])) {
+    } elseif ((!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] === false)
+        && isset($routes[$request_uri]['auth'])) {
         // Check if the user is authenticated
         http_response_code(302); // Return 401 Unauthorized if not authenticated
         header('Location: /connect');

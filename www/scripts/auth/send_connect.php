@@ -1,5 +1,4 @@
 <?php
-
 if ($conn->connect_error) {
     die('Connection failed: ' . $conn->connect_error);
 }
@@ -38,3 +37,5 @@ if ($count >= 1) {
     echo 'Invalid credentials<br>';
     echo '<button type="button" class="btn btn-danger" onclick="location.href = \'/\'">Recommencer</button>';
 }
+?>
+

@@ -1,15 +1,4 @@
 <?php
-// Function to extract the YouTube video ID from a URL
-function extractYouTubeVideoId($id) {
-
-    // Check if the 'v' parameter exists and is exactly 11 characters long
-    if (isset($params['v']) && strlen($params['v']) == 11) {
-        return $params['v'];
-    }
-
-    return null; // Return null if the video ID is invalid or not found
-}
-
 // Check if a URL is submitted via GET request
 if (isset($_GET['v'])) {
     $videoId = $_GET['v'];
@@ -19,7 +8,9 @@ if (isset($_GET['v'])) {
         // If the video ID is valid, generate the embed code
         $embedUrl = "https://www.youtube.com/embed/" . $videoId;
         $embedCode = '<div class="embed-responsive embed-responsive-16by9">
-                        <iframe style="width: 30em; height: 20em" class="embed-responsive-item" src="' . $embedUrl . '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe style="width: 30em; height: 20em" class="embed-responsive-item" src="' . $embedUrl . '" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
                       </div>';
 
         // Prepare the SQL query
@@ -40,7 +31,8 @@ if (isset($_GET['v'])) {
 
     } else {
         // If the video ID is invalid, show an error message
-        echo "<h1 style='text-align: center; color: purple'>Invalid YouTube video URL. Please make sure the URL contains a valid video ID.</h1><br>";
+        echo "<h1 style='text-align: center; color: purple'>Invalid YouTube video URL. 
+               Please make sure the URL contains a valid video ID.</h1><br>";
         exit;
     }
 } else {
